@@ -1,67 +1,56 @@
-# Task Master [![GitHub stars](https://img.shields.io/github/stars/eyaltoledano/claude-task-master?style=social)](https://github.com/eyaltoledano/claude-task-master/stargazers)
+# Task Master Ai
 
-[![CI](https://github.com/eyaltoledano/claude-task-master/actions/workflows/ci.yml/badge.svg)](https://github.com/eyaltoledano/claude-task-master/actions/workflows/ci.yml) [![npm version](https://badge.fury.io/js/task-master-ai.svg)](https://badge.fury.io/js/task-master-ai) [![Discord](https://dcbadge.limes.pink/api/server/https://discord.gg/taskmasterai?style=flat)](https://discord.gg/taskmasterai) [![License: MIT with Commons Clause](https://img.shields.io/badge/license-MIT%20with%20Commons%20Clause-blue.svg)](LICENSE)
 
-[![NPM Downloads](https://img.shields.io/npm/d18m/task-master-ai?style=flat)](https://www.npmjs.com/package/task-master-ai) [![NPM Downloads](https://img.shields.io/npm/dm/task-master-ai?style=flat)](https://www.npmjs.com/package/task-master-ai) [![NPM Downloads](https://img.shields.io/npm/dw/task-master-ai?style=flat)](https://www.npmjs.com/package/task-master-ai)
+Um sistema de gerenciamento de tarefas para desenvolvimento orientado por IA.
 
-## By [@eyaltoledano](https://x.com/eyaltoledano), [@RalphEcom](https://x.com/RalphEcom) & [@jasonzhou1993](https://x.com/jasonzhou1993)
+## Documentação
 
-[![Twitter Follow](https://img.shields.io/twitter/follow/eyaltoledano)](https://x.com/eyaltoledano)
-[![Twitter Follow](https://img.shields.io/twitter/follow/RalphEcom)](https://x.com/RalphEcom)
-[![Twitter Follow](https://img.shields.io/twitter/follow/jasonzhou1993)](https://x.com/jasonzhou1993)
+Para informações mais detalhadas, consulte a documentação no diretório `docs`:
 
-A task management system for AI-driven development with Claude, designed to work seamlessly with Cursor AI.
+- [Guia de Configuração](docs/configuration.md) - Configure variáveis de ambiente e personalize o Task Master
+- [Tutorial](docs/tutorial.md) - Guia passo a passo para começar com o Task Master
+- [Referência de Comandos](docs/command-reference.md) - Lista completa de todos os comandos disponíveis
+- [Estrutura de Tarefas](docs/task-structure.md) - Entendendo o formato e recursos das tarefas
+- [Exemplos de Interações](docs/examples.md) - Exemplos comuns de interações com o Cursor AI
+- [Guia de Migração](docs/migration-guide.md) - Guia para migrar para a nova estrutura do projeto
 
-## Documentation
+##### Instalação Rápida para Cursor 1.0+ (Um Clique)
 
-For more detailed information, check out the documentation in the `docs` directory:
+> **Nota:** Após clicar no botão de instalação, você ainda precisará adicionar suas chaves de API à configuração. O botão instala o servidor MCP com chaves temporárias que você precisará substituir por suas chaves de API reais.
 
-- [Configuration Guide](docs/configuration.md) - Set up environment variables and customize Task Master
-- [Tutorial](docs/tutorial.md) - Step-by-step guide to getting started with Task Master
-- [Command Reference](docs/command-reference.md) - Complete list of all available commands
-- [Task Structure](docs/task-structure.md) - Understanding the task format and features
-- [Example Interactions](docs/examples.md) - Common Cursor AI interaction examples
-- [Migration Guide](docs/migration-guide.md) - Guide to migrating to the new project structure
+## Requisitos
 
-##### Quick Install for Cursor 1.0+ (One-Click)
+O Taskmaster utiliza IA em vários comandos, e esses requerem uma chave de API separada. Você pode usar uma variedade de modelos de diferentes provedores de IA, desde que adicione suas chaves de API. Por exemplo, se você quiser usar o Claude 3.7, precisará de uma chave de API da Anthropic.
 
-[<img src="https://cursor.com/deeplink/mcp-install-dark.png" alt="Add Task Master MCP server to Cursor" style="max-height: 26px;">](cursor://anysphere.cursor-deeplink/mcp/install?name=taskmaster-ai&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIi0tcGFja2FnZT10YXNrLW1hc3Rlci1haSIsInRhc2stbWFzdGVyLWFpIl0sImVudiI6eyJBTlRIUk9QSUNfQVBJX0tFWSI6IllPVVJfQU5USFJPUElDX0FQSV9LRVlfSEVSRSIsIlBFUlBMRVhJVFlfQVBJX0tFWSI6IllPVVJfUEVSUExFWElUWV9BUElfS0VZX0hFUkUiLCJPUEVOQUlfQVBJX0tFWSI6IllPVVJfT1BFTkFJX0tFWV9IRVJFIiwiR09PR0xFX0FQSV9LRVkiOiJZT1VSX0dPT0dMRV9LRVlfSEVSRSIsIk1JU1RSQUxfQVBJX0tFWSI6IllPVVJfTUlTVFJBTF9LRVlfSEVSRSIsIk9QRU5ST1VURVJfQVBJX0tFWSI6IllPVVJfT1BFTlJPVVRFUl9LRVlfSEVSRSIsIlhBSV9BUElfS0VZIjoiWU9VUl9YQUlfS0VZX0hFUkUiLCJBWlVSRV9PUEVOQUJFX0FQSV9LRVkiOiJZT1VSX0FaVVJFX0tFWV9IRVJFIiwiT0xMQU1BX0FQSV9LRVkiOiJZT1VSX09MTEFNQV9BUElfS0VZX0hFUkUifX0%3D)
+Você pode definir 3 tipos de modelos para serem usados: o modelo principal, o modelo de pesquisa e o modelo de fallback (caso o principal ou o de pesquisa falhem). Qualquer modelo que você use, a chave de API do seu provedor deve estar presente em mcp.json ou .env.
 
-> **Note:** After clicking the install button, you'll still need to add your API keys to the configuration. The button installs the MCP server with placeholder keys that you'll need to replace with your actual API keys.
+Pelo menos uma (1) das seguintes é necessária:
 
-## Requirements
+- Chave de API da Anthropic (API Claude)
+- Chave de API da OpenAI
+- Chave de API do Google Gemini
+- Chave de API da Perplexity (para modelo de pesquisa)
+- Chave de API da xAI (para modelo de pesquisa ou principal)
+- Chave de API do OpenRouter (para modelo de pesquisa ou principal)
 
-Taskmaster utilizes AI across several commands, and those require a separate API key. You can use a variety of models from different AI providers provided you add your API keys. For example, if you want to use Claude 3.7, you'll need an Anthropic API key.
+Usar o modelo de pesquisa é opcional, mas altamente recomendado. Você precisará de pelo menos UMA chave de API. Adicionar todas as chaves de API permite que você mude perfeitamente entre provedores de modelos quando desejar.
 
-You can define 3 types of models to be used: the main model, the research model, and the fallback model (in case either the main or research fail). Whatever model you use, its provider API key must be present in either mcp.json or .env.
+## Início Rápido
 
-At least one (1) of the following is required:
+### Opção 1: MCP (Recomendado)
 
-- Anthropic API key (Claude API)
-- OpenAI API key
-- Google Gemini API key
-- Perplexity API key (for research model)
-- xAI API Key (for research or main model)
-- OpenRouter API Key (for research or main model)
+MCP (Model Control Protocol) permite que você execute o Task Master diretamente do seu editor.
 
-Using the research model is optional but highly recommended. You will need at least ONE API key. Adding all API keys enables you to seamlessly switch between model providers at will.
+#### 1. Adicione sua configuração MCP no seguinte caminho, dependendo do seu editor
 
-## Quick Start
-
-### Option 1: MCP (Recommended)
-
-MCP (Model Control Protocol) lets you run Task Master directly from your editor.
-
-#### 1. Add your MCP config at the following path depending on your editor
-
-| Editor       | Scope   | Linux/macOS Path                      | Windows Path                                      | Key          |
+| Editor       | Escopo  | Caminho Linux/macOS                    | Caminho Windows                                    | Chave        |
 | ------------ | ------- | ------------------------------------- | ------------------------------------------------- | ------------ |
 | **Cursor**   | Global  | `~/.cursor/mcp.json`                  | `%USERPROFILE%\.cursor\mcp.json`                  | `mcpServers` |
-|              | Project | `<project_folder>/.cursor/mcp.json`   | `<project_folder>\.cursor\mcp.json`               | `mcpServers` |
+|              | Projeto | `<pasta_projeto>/.cursor/mcp.json`    | `<pasta_projeto>\.cursor\mcp.json`                | `mcpServers` |
 | **Windsurf** | Global  | `~/.codeium/windsurf/mcp_config.json` | `%USERPROFILE%\.codeium\windsurf\mcp_config.json` | `mcpServers` |
-| **VS Code**  | Project | `<project_folder>/.vscode/mcp.json`   | `<project_folder>\.vscode\mcp.json`               | `servers`    |
+| **VS Code**  | Projeto | `<pasta_projeto>/.vscode/mcp.json`    | `<pasta_projeto>\.vscode\mcp.json`                | `servers`    |
 
-##### Manual Configuration
+##### Configuração Manual
 
 ###### Cursor & Windsurf (`mcpServers`)
 
@@ -72,22 +61,22 @@ MCP (Model Control Protocol) lets you run Task Master directly from your editor.
       "command": "npx",
       "args": ["-y", "--package=task-master-ai", "task-master-ai"],
       "env": {
-        "ANTHROPIC_API_KEY": "YOUR_ANTHROPIC_API_KEY_HERE",
-        "PERPLEXITY_API_KEY": "YOUR_PERPLEXITY_API_KEY_HERE",
-        "OPENAI_API_KEY": "YOUR_OPENAI_KEY_HERE",
-        "GOOGLE_API_KEY": "YOUR_GOOGLE_KEY_HERE",
-        "MISTRAL_API_KEY": "YOUR_MISTRAL_KEY_HERE",
-        "OPENROUTER_API_KEY": "YOUR_OPENROUTER_KEY_HERE",
-        "XAI_API_KEY": "YOUR_XAI_KEY_HERE",
-        "AZURE_OPENAI_API_KEY": "YOUR_AZURE_KEY_HERE",
-        "OLLAMA_API_KEY": "YOUR_OLLAMA_API_KEY_HERE"
+        "ANTHROPIC_API_KEY": "SUA_CHAVE_API_ANTHROPIC_AQUI",
+        "PERPLEXITY_API_KEY": "SUA_CHAVE_API_PERPLEXITY_AQUI",
+        "OPENAI_API_KEY": "SUA_CHAVE_OPENAI_AQUI",
+        "GOOGLE_API_KEY": "SUA_CHAVE_GOOGLE_AQUI",
+        "MISTRAL_API_KEY": "SUA_CHAVE_MISTRAL_AQUI",
+        "OPENROUTER_API_KEY": "SUA_CHAVE_OPENROUTER_AQUI",
+        "XAI_API_KEY": "SUA_CHAVE_XAI_AQUI",
+        "AZURE_OPENAI_API_KEY": "SUA_CHAVE_AZURE_AQUI",
+        "OLLAMA_API_KEY": "SUA_CHAVE_OLLAMA_AQUI"
       }
     }
   }
 }
 ```
 
-> 🔑 Replace `YOUR_…_KEY_HERE` with your real API keys. You can remove keys you don't use.
+> 🔑 Substitua `SUA_…_CHAVE_AQUI` por suas chaves de API reais. Você pode remover as chaves que não usa.
 
 ###### VS Code (`servers` + `type`)
 
@@ -98,14 +87,14 @@ MCP (Model Control Protocol) lets you run Task Master directly from your editor.
       "command": "npx",
       "args": ["-y", "--package=task-master-ai", "task-master-ai"],
       "env": {
-        "ANTHROPIC_API_KEY": "YOUR_ANTHROPIC_API_KEY_HERE",
-        "PERPLEXITY_API_KEY": "YOUR_PERPLEXITY_API_KEY_HERE",
-        "OPENAI_API_KEY": "YOUR_OPENAI_KEY_HERE",
-        "GOOGLE_API_KEY": "YOUR_GOOGLE_KEY_HERE",
-        "MISTRAL_API_KEY": "YOUR_MISTRAL_KEY_HERE",
-        "OPENROUTER_API_KEY": "YOUR_OPENROUTER_KEY_HERE",
-        "XAI_API_KEY": "YOUR_XAI_KEY_HERE",
-        "AZURE_OPENAI_API_KEY": "YOUR_AZURE_KEY_HERE"
+        "ANTHROPIC_API_KEY": "SUA_CHAVE_API_ANTHROPIC_AQUI",
+        "PERPLEXITY_API_KEY": "SUA_CHAVE_API_PERPLEXITY_AQUI",
+        "OPENAI_API_KEY": "SUA_CHAVE_OPENAI_AQUI",
+        "GOOGLE_API_KEY": "SUA_CHAVE_GOOGLE_AQUI",
+        "MISTRAL_API_KEY": "SUA_CHAVE_MISTRAL_AQUI",
+        "OPENROUTER_API_KEY": "SUA_CHAVE_OPENROUTER_AQUI",
+        "XAI_API_KEY": "SUA_CHAVE_XAI_AQUI",
+        "AZURE_OPENAI_API_KEY": "SUA_CHAVE_AZURE_AQUI"
       },
       "type": "stdio"
     }
@@ -113,141 +102,104 @@ MCP (Model Control Protocol) lets you run Task Master directly from your editor.
 }
 ```
 
-> 🔑 Replace `YOUR_…_KEY_HERE` with your real API keys. You can remove keys you don't use.
+> 🔑 Substitua `SUA_…_CHAVE_AQUI` por suas chaves de API reais. Você pode remover as chaves que não usa.
 
-#### 2. (Cursor-only) Enable Taskmaster MCP
+#### 2. (Apenas Cursor) Ative o Taskmaster MCP
 
-Open Cursor Settings (Ctrl+Shift+J) ➡ Click on MCP tab on the left ➡ Enable task-master-ai with the toggle
+Abra as Configurações do Cursor (Ctrl+Shift+J) ➡ Clique na aba MCP à esquerda ➡ Ative o task-master-ai com o toggle
 
-#### 3. (Optional) Configure the models you want to use
+#### 3. (Opcional) Configure os modelos que você deseja usar
 
-In your editor's AI chat pane, say:
-
-```txt
-Change the main, research and fallback models to <model_name>, <model_name> and <model_name> respectively.
-```
-
-[Table of available models](docs/models.md)
-
-#### 4. Initialize Task Master
-
-In your editor's AI chat pane, say:
+No painel de chat de IA do seu editor, diga:
 
 ```txt
-Initialize taskmaster-ai in my project
+Altere os modelos principal, de pesquisa e de fallback para <nome_do_modelo>, <nome_do_modelo> e <nome_do_modelo> respectivamente.
 ```
 
-#### 5. Make sure you have a PRD (Recommended)
+[Tabela de modelos disponíveis](docs/models.md)
 
-For **new projects**: Create your PRD at `.taskmaster/docs/prd.txt`  
-For **existing projects**: You can use `scripts/prd.txt` or migrate with `task-master migrate`
+#### 4. Inicialize o Task Master
 
-An example PRD template is available after initialization in `.taskmaster/templates/example_prd.txt`.
+No painel de chat de IA do seu editor, diga:
+
+```txt
+Inicialize o taskmaster-ai no meu projeto
+```
+
+#### 5. Certifique-se de ter um PRD (Recomendado)
+
+Para **novos projetos**: Crie seu PRD em `.taskmaster/docs/prd.txt`  
+Para **projetos existentes**: Você pode usar `scripts/prd.txt` ou migrar com `task-master migrate`
+
+Um modelo de exemplo de PRD está disponível após a inicialização em `.taskmaster/templates/example_prd.txt`.
 
 > [!NOTE]
-> While a PRD is recommended for complex projects, you can always create individual tasks by asking "Can you help me implement [description of what you want to do]?" in chat.
+> Embora um PRD seja recomendado para projetos complexos, você sempre pode criar tarefas individuais perguntando "Você pode me ajudar a implementar [descrição do que você quer fazer]?" no chat.
 
-**Always start with a detailed PRD.**
+**Sempre comece com um PRD detalhado.**
 
-The more detailed your PRD, the better the generated tasks will be.
+Quanto mais detalhado for seu PRD, melhores serão as tarefas geradas.
 
-#### 6. Common Commands
+#### 6. Comandos Comuns
 
-Use your AI assistant to:
+Use seu assistente de IA para:
 
-- Parse requirements: `Can you parse my PRD at scripts/prd.txt?`
-- Plan next step: `What's the next task I should work on?`
-- Implement a task: `Can you help me implement task 3?`
-- Expand a task: `Can you help me expand task 4?`
+- Analisar requisitos: `Você pode analisar meu PRD em scripts/prd.txt?`
+- Planejar próximo passo: `Qual é a próxima tarefa que devo trabalhar?`
+- Implementar uma tarefa: `Você pode me ajudar a implementar a tarefa 3?`
+- Expandir uma tarefa: `Você pode me ajudar a expandir a tarefa 4?`
 
-[More examples on how to use Task Master in chat](docs/examples.md)
+[Mais exemplos de como usar o Task Master no chat](docs/examples.md)
 
-### Option 2: Using Command Line
+### Opção 2: Usando Linha de Comando
 
-#### Installation
+#### Instalação
 
 ```bash
-# Install globally
+# Instalar globalmente
 npm install -g task-master-ai
 
-# OR install locally within your project
+# OU instalar localmente dentro do seu projeto
 npm install task-master-ai
 ```
 
-#### Initialize a new project
+#### Inicializar um novo projeto
 
 ```bash
-# If installed globally
+# Se instalado globalmente
 task-master init
 
-# If installed locally
+# Se instalado localmente
 npx task-master init
 ```
 
-This will prompt you for project details and set up a new project with the necessary files and structure.
+Isso solicitará detalhes do projeto e configurará um novo projeto com os arquivos e estrutura necessários.
 
-#### Common Commands
+#### Comandos Comuns
 
 ```bash
-# Initialize a new project
+# Inicializar um novo projeto
 task-master init
 
-# Parse a PRD and generate tasks
-task-master parse-prd your-prd.txt
+# Analisar um PRD e gerar tarefas
+task-master parse-prd seu-prd.txt
 
-# List all tasks
+# Listar todas as tarefas
 task-master list
 
-# Show the next task to work on
+# Mostrar a próxima tarefa para trabalhar
 task-master next
 
-# Generate task files
+# Gerar arquivos de tarefas
 task-master generate
 ```
 
-## Troubleshooting
+## Solução de Problemas
 
-### If `task-master init` doesn't respond
+### Se `task-master init` não responder
 
-Try running it with Node directly:
+Tente executá-lo diretamente com Node:
 
 ```bash
 node node_modules/claude-task-master/scripts/init.js
 ```
-
-Or clone the repository and run:
-
-```bash
-git clone https://github.com/eyaltoledano/claude-task-master.git
-cd claude-task-master
-node scripts/init.js
-```
-
-## Contributors
-
-<a href="https://github.com/eyaltoledano/claude-task-master/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=eyaltoledano/claude-task-master" alt="Task Master project contributors" />
-</a>
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=eyaltoledano/claude-task-master&type=Timeline)](https://www.star-history.com/#eyaltoledano/claude-task-master&Timeline)
-
-## Licensing
-
-Task Master is licensed under the MIT License with Commons Clause. This means you can:
-
-✅ **Allowed**:
-
-- Use Task Master for any purpose (personal, commercial, academic)
-- Modify the code
-- Distribute copies
-- Create and sell products built using Task Master
-
-❌ **Not Allowed**:
-
-- Sell Task Master itself
-- Offer Task Master as a hosted service
-- Create competing products based on Task Master
-
-See the [LICENSE](LICENSE) file for the complete license text and [licensing details](docs/licensing.md) for more information.
