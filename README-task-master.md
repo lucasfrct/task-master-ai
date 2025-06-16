@@ -1,104 +1,104 @@
 # Task Master
 
-### by [@eyaltoledano](https://x.com/eyaltoledano)
+### por [@eyaltoledano](https://x.com/eyaltoledano)
 
-A task management system for AI-driven development with Claude, designed to work seamlessly with Cursor AI.
+Um sistema de gerenciamento de tarefas para desenvolvimento orientado por IA com Claude, projetado para funcionar perfeitamente com o Cursor AI.
 
-## Requirements
+## Requisitos
 
-- Node.js 14.0.0 or higher
-- Anthropic API key (Claude API)
-- Anthropic SDK version 0.39.0 or higher
-- OpenAI SDK (for Perplexity API integration, optional)
+- Node.js 14.0.0 ou superior
+- Chave de API da Anthropic (API Claude)
+- Anthropic SDK versão 0.39.0 ou superior
+- OpenAI SDK (para integração com a API Perplexity, opcional)
 
-## Configuration
+## Configuração
 
-Taskmaster uses two primary configuration methods:
+O Taskmaster utiliza dois métodos principais de configuração:
 
-1.  **`.taskmasterconfig` File (Project Root)**
+1.  **Arquivo `.taskmasterconfig` (Raiz do Projeto)**
 
-    - Stores most settings: AI model selections (main, research, fallback), parameters (max tokens, temperature), logging level, default priority/subtasks, project name.
-    - **Created and managed using `task-master models --setup` CLI command or the `models` MCP tool.**
-    - Do not edit manually unless you know what you are doing.
+    - Armazena a maioria das configurações: seleções de modelos de IA (principal, pesquisa, fallback), parâmetros (tokens máximos, temperatura), nível de log, prioridade/subtarefas padrão, nome do projeto.
+    - **Criado e gerenciado usando o comando CLI `task-master models --setup` ou a ferramenta MCP `models`.**
+    - Não edite manualmente, a menos que saiba o que está fazendo.
 
-2.  **Environment Variables (`.env` file or MCP `env` block)**
-    - Used **only** for sensitive **API Keys** (e.g., `ANTHROPIC_API_KEY`, `PERPLEXITY_API_KEY`, etc.) and specific endpoints (like `OLLAMA_BASE_URL`).
-    - **For CLI:** Place keys in a `.env` file in your project root.
-    - **For MCP/Cursor:** Place keys in the `env` section of your `.cursor/mcp.json` (or other MCP config according to the AI IDE or client you use) file under the `taskmaster-ai` server definition.
+2.  **Variáveis de Ambiente (arquivo `.env` ou bloco `env` do MCP)**
+    - Usado **apenas** para **Chaves de API** sensíveis (por exemplo, `ANTHROPIC_API_KEY`, `PERPLEXITY_API_KEY`, etc.) e endpoints específicos (como `OLLAMA_BASE_URL`).
+    - **Para CLI:** Coloque as chaves em um arquivo `.env` na raiz do seu projeto.
+    - **Para MCP/Cursor:** Coloque as chaves na seção `env` do seu arquivo `.cursor/mcp.json` (ou outra configuração MCP de acordo com a IDE ou cliente AI que você usa) sob a definição do servidor `taskmaster-ai`.
 
-**Important:** Settings like model choices, max tokens, temperature, and log level are **no longer configured via environment variables.** Use the `task-master models` command or tool.
+**Importante:** Configurações como escolhas de modelo, tokens máximos, temperatura e nível de log **não são mais configuradas via variáveis de ambiente.** Use o comando ou ferramenta `task-master models`.
 
-See the [Configuration Guide](docs/configuration.md) for full details.
+Consulte o [Guia de Configuração](docs/configuration.md) para detalhes completos.
 
-## Installation
+## Instalação
 
 ```bash
-# Install globally
+# Instalar globalmente
 npm install -g task-master-ai
 
-# OR install locally within your project
+# OU instalar localmente dentro do seu projeto
 npm install task-master-ai
 ```
 
-### Initialize a new project
+### Inicializar um novo projeto
 
 ```bash
-# If installed globally
+# Se instalado globalmente
 task-master init
 
-# If installed locally
+# Se instalado localmente
 npx task-master init
 ```
 
-This will prompt you for project details and set up a new project with the necessary files and structure.
+Isso solicitará detalhes do projeto e configurará um novo projeto com os arquivos e estrutura necessários.
 
-### Important Notes
+### Notas Importantes
 
-1. **ES Modules Configuration:**
+1. **Configuração de Módulos ES:**
 
-   - This project uses ES Modules (ESM) instead of CommonJS.
-   - This is set via `"type": "module"` in your package.json.
-   - Use `import/export` syntax instead of `require()`.
-   - Files should use `.js` or `.mjs` extensions.
-   - To use a CommonJS module, either:
-     - Rename it with `.cjs` extension
-     - Use `await import()` for dynamic imports
-   - If you need CommonJS throughout your project, remove `"type": "module"` from package.json, but Task Master scripts expect ESM.
+   - Este projeto usa Módulos ES (ESM) em vez de CommonJS.
+   - Isso é definido via `"type": "module"` no seu package.json.
+   - Use a sintaxe `import/export` em vez de `require()`.
+   - Os arquivos devem usar extensões `.js` ou `.mjs`.
+   - Para usar um módulo CommonJS, ou:
+     - Renomeie-o com a extensão `.cjs`
+     - Use `await import()` para importações dinâmicas
+   - Se você precisar de CommonJS em todo o seu projeto, remova `"type": "module"` do package.json, mas os scripts do Task Master esperam ESM.
 
-2. The Anthropic SDK version should be 0.39.0 or higher.
+2. A versão do Anthropic SDK deve ser 0.39.0 ou superior.
 
-## Quick Start with Global Commands
+## Início Rápido com Comandos Globais
 
-After installing the package globally, you can use these CLI commands from any directory:
+Após instalar o pacote globalmente, você pode usar esses comandos CLI de qualquer diretório:
 
 ```bash
-# Initialize a new project
+# Inicializar um novo projeto
 task-master init
 
-# Parse a PRD and generate tasks
-task-master parse-prd your-prd.txt
+# Analisar um PRD e gerar tarefas
+task-master parse-prd seu-prd.txt
 
-# List all tasks
+# Listar todas as tarefas
 task-master list
 
-# Show the next task to work on
+# Mostrar a próxima tarefa para trabalhar
 task-master next
 
-# Generate task files
+# Gerar arquivos de tarefas
 task-master generate
 ```
 
-## Troubleshooting
+## Solução de Problemas
 
-### If `task-master init` doesn't respond:
+### Se `task-master init` não responder:
 
-Try running it with Node directly:
+Tente executá-lo diretamente com Node:
 
 ```bash
 node node_modules/claude-task-master/scripts/init.js
 ```
 
-Or clone the repository and run:
+Ou clone o repositório e execute:
 
 ```bash
 git clone https://github.com/eyaltoledano/claude-task-master.git
@@ -106,148 +106,148 @@ cd claude-task-master
 node scripts/init.js
 ```
 
-## Task Structure
+## Estrutura da Tarefa
 
-Tasks in tasks.json have the following structure:
+As tarefas em tasks.json têm a seguinte estrutura:
 
-- `id`: Unique identifier for the task (Example: `1`)
-- `title`: Brief, descriptive title of the task (Example: `"Initialize Repo"`)
-- `description`: Concise description of what the task involves (Example: `"Create a new repository, set up initial structure."`)
-- `status`: Current state of the task (Example: `"pending"`, `"done"`, `"deferred"`)
-- `dependencies`: IDs of tasks that must be completed before this task (Example: `[1, 2]`)
-  - Dependencies are displayed with status indicators (✅ for completed, ⏱️ for pending)
-  - This helps quickly identify which prerequisite tasks are blocking work
-- `priority`: Importance level of the task (Example: `"high"`, `"medium"`, `"low"`)
-- `details`: In-depth implementation instructions (Example: `"Use GitHub client ID/secret, handle callback, set session token."`)
-- `testStrategy`: Verification approach (Example: `"Deploy and call endpoint to confirm 'Hello World' response."`)
-- `subtasks`: List of smaller, more specific tasks that make up the main task (Example: `[{"id": 1, "title": "Configure OAuth", ...}]`)
+- `id`: Identificador único para a tarefa (Exemplo: `1`)
+- `title`: Título breve e descritivo da tarefa (Exemplo: `"Inicializar Repositório"`)
+- `description`: Descrição concisa do que a tarefa envolve (Exemplo: `"Criar um novo repositório, configurar a estrutura inicial."`)
+- `status`: Estado atual da tarefa (Exemplo: `"pending"`, `"done"`, `"deferred"`)
+- `dependencies`: IDs de tarefas que devem ser concluídas antes desta tarefa (Exemplo: `[1, 2]`)
+  - As dependências são exibidas com indicadores de status (✅ para concluídas, ⏱️ para pendentes)
+  - Isso ajuda a identificar rapidamente quais tarefas pré-requisitos estão bloqueando o trabalho
+- `priority`: Nível de importância da tarefa (Exemplo: `"high"`, `"medium"`, `"low"`)
+- `details`: Instruções de implementação detalhadas (Exemplo: `"Usar ID/segredo do cliente GitHub, manipular callback, definir token de sessão."`)
+- `testStrategy`: Abordagem de verificação (Exemplo: `"Implantar e chamar endpoint para confirmar resposta 'Hello World'."`)
+- `subtasks`: Lista de tarefas menores e mais específicas que compõem a tarefa principal (Exemplo: `[{"id": 1, "title": "Configurar OAuth", ...}]`)
 
-## Integrating with Cursor AI
+## Integrando com Cursor AI
 
-Claude Task Master is designed to work seamlessly with [Cursor AI](https://www.cursor.so/), providing a structured workflow for AI-driven development.
+Claude Task Master é projetado para funcionar perfeitamente com [Cursor AI](https://www.cursor.so/), fornecendo um fluxo de trabalho estruturado para desenvolvimento orientado por IA.
 
-### Setup with Cursor
+### Configuração com Cursor
 
-1. After initializing your project, open it in Cursor
-2. The `.cursor/rules/dev_workflow.mdc` file is automatically loaded by Cursor, providing the AI with knowledge about the task management system
-3. Place your PRD document in the `scripts/` directory (e.g., `scripts/prd.txt`)
-4. Open Cursor's AI chat and switch to Agent mode
+1. Após inicializar seu projeto, abra-o no Cursor
+2. O arquivo `.cursor/rules/dev_workflow.mdc` é automaticamente carregado pelo Cursor, fornecendo ao AI conhecimento sobre o sistema de gerenciamento de tarefas
+3. Coloque seu documento PRD no diretório `scripts/` (ex: `scripts/prd.txt`)
+4. Abra o chat AI do Cursor e mude para o modo Agente
 
-### Setting up MCP in Cursor
+### Configurando o MCP no Cursor
 
-To enable enhanced task management capabilities directly within Cursor using the Model Control Protocol (MCP):
+Para habilitar recursos aprimorados de gerenciamento de tarefas diretamente no Cursor usando o Protocolo de Controle de Modelo (MCP):
 
-1. Go to Cursor settings
-2. Navigate to the MCP section
-3. Click on "Add New MCP Server"
-4. Configure with the following details:
-   - Name: "Task Master"
-   - Type: "Command"
-   - Command: "npx -y task-master-ai"
-5. Save the settings
+1. Vá para as configurações do Cursor
+2. Navegue até a seção MCP
+3. Clique em "Adicionar Novo Servidor MCP"
+4. Configure com os seguintes detalhes:
+   - Nome: "Task Master"
+   - Tipo: "Comando"
+   - Comando: "npx -y task-master-ai"
+5. Salve as configurações
 
-Once configured, you can interact with Task Master's task management commands directly through Cursor's interface, providing a more integrated experience.
+Uma vez configurado, você pode interagir com os comandos de gerenciamento de tarefas do Task Master diretamente através da interface do Cursor, proporcionando uma experiência mais integrada.
 
-### Initial Task Generation
+### Geração Inicial de Tarefas
 
-In Cursor's AI chat, instruct the agent to generate tasks from your PRD:
+No chat AI do Cursor, instrua o agente a gerar tarefas a partir do seu PRD:
 
 ```
-Please use the task-master parse-prd command to generate tasks from my PRD. The PRD is located at scripts/prd.txt.
+Por favor, use o comando task-master parse-prd para gerar tarefas a partir do meu PRD. O PRD está localizado em scripts/prd.txt.
 ```
 
-The agent will execute:
+O agente executará:
 
 ```bash
 task-master parse-prd scripts/prd.txt
 ```
 
-This will:
+Isso irá:
 
-- Parse your PRD document
-- Generate a structured `tasks.json` file with tasks, dependencies, priorities, and test strategies
-- The agent will understand this process due to the Cursor rules
+- Analisar seu documento PRD
+- Gerar um arquivo `tasks.json` estruturado com tarefas, dependências, prioridades e estratégias de teste
+- O agente entenderá esse processo devido às regras do Cursor
 
-### Generate Individual Task Files
+### Gerar Arquivos de Tarefas Individuais
 
-Next, ask the agent to generate individual task files:
+Em seguida, peça ao agente para gerar arquivos de tarefas individuais:
 
 ```
-Please generate individual task files from tasks.json
+Por favor, gere arquivos de tarefas individuais a partir de tasks.json
 ```
 
-The agent will execute:
+O agente executará:
 
 ```bash
 task-master generate
 ```
 
-This creates individual task files in the `tasks/` directory (e.g., `task_001.txt`, `task_002.txt`), making it easier to reference specific tasks.
+Isso cria arquivos de tarefas individuais no diretório `tasks/` (ex: `task_001.txt`, `task_002.txt`), facilitando a referência a tarefas específicas.
 
-## AI-Driven Development Workflow
+## Fluxo de Trabalho de Desenvolvimento Orientado por IA
 
-The Cursor agent is pre-configured (via the rules file) to follow this workflow:
+O agente do Cursor é pré-configurado (através do arquivo de regras) para seguir este fluxo de trabalho:
 
-### 1. Task Discovery and Selection
+### 1. Descoberta e Seleção de Tarefas
 
-Ask the agent to list available tasks:
-
-```
-What tasks are available to work on next?
-```
-
-The agent will:
-
-- Run `task-master list` to see all tasks
-- Run `task-master next` to determine the next task to work on
-- Analyze dependencies to determine which tasks are ready to be worked on
-- Prioritize tasks based on priority level and ID order
-- Suggest the next task(s) to implement
-
-### 2. Task Implementation
-
-When implementing a task, the agent will:
-
-- Reference the task's details section for implementation specifics
-- Consider dependencies on previous tasks
-- Follow the project's coding standards
-- Create appropriate tests based on the task's testStrategy
-
-You can ask:
+Peça ao agente para listar as tarefas disponíveis:
 
 ```
-Let's implement task 3. What does it involve?
+Quais tarefas estão disponíveis para trabalhar em seguida?
 ```
 
-### 3. Task Verification
+O agente irá:
 
-Before marking a task as complete, verify it according to:
+- Executar `task-master list` para ver todas as tarefas
+- Executar `task-master next` para determinar a próxima tarefa a ser trabalhada
+- Analisar dependências para determinar quais tarefas estão prontas para serem trabalhadas
+- Priorizar tarefas com base no nível de prioridade e ordem de ID
+- Sugerir a(s) próxima(s) tarefa(s) a serem implementadas
 
-- The task's specified testStrategy
-- Any automated tests in the codebase
-- Manual verification if required
+### 2. Implementação de Tarefas
 
-### 4. Task Completion
+Ao implementar uma tarefa, o agente irá:
 
-When a task is completed, tell the agent:
+- Consultar a seção de detalhes da tarefa para especificações de implementação
+- Considerar dependências em tarefas anteriores
+- Seguir os padrões de codificação do projeto
+- Criar testes apropriados com base na `testStrategy` da tarefa
+
+Você pode perguntar:
 
 ```
-Task 3 is now complete. Please update its status.
+Vamos implementar a tarefa 3. O que ela envolve?
 ```
 
-The agent will execute:
+### 3. Verificação da Tarefa
+
+Antes de marcar uma tarefa como concluída, verifique-a de acordo com:
+
+- A `testStrategy` especificada na tarefa
+- Quaisquer testes automatizados na base de código
+- Verificação manual, se necessário
+
+### 4. Conclusão da Tarefa
+
+Quando uma tarefa for concluída, diga ao agente:
+
+```
+A Tarefa 3 agora está completa. Por favor, atualize seu status.
+```
+
+O agente executará:
 
 ```bash
 task-master set-status --id=3 --status=done
 ```
 
-### 5. Handling Implementation Drift
+### 5. Lidando com Desvios de Implementação
 
-If during implementation, you discover that:
+Se durante a implementação, você descobrir que:
 
-- The current approach differs significantly from what was planned
-- Future tasks need to be modified due to current implementation choices
-- New dependencies or requirements have emerged
+- A abordagem atual difere significativamente do que foi planejado
+- Tarefas futuras precisam ser modificadas devido às escolhas de implementação atuais
+- Novas dependências ou requisitos surgiram
 
 Tell the agent:
 
