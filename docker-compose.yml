@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  taskmaster:
+    container_name: taskmaster
+    hostname: taskmaster
+    image: taskmaster
+    build:
+      context: .
+      dockerfile: Dockerfile
+    stdin_open: true
+    tty: false
+    entrypoint: ["node", "/app/mcp-server/server.js"]
+    env_file:
+      - .env # Carrega variáveis de ambiente do arquivo .env
+    environment:
+      NODE_ENV: development
+      LOG_LEVEL: debug
+    network_mode: "bridge"
+    # Nenhuma porta exposta por padrão
